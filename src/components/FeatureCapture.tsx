@@ -21,7 +21,12 @@ export function FeatureCapture() {
   return (
     <div className="grid w-full max-w-5xl gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <FeatureForm onSubmit={handleAddFeature} />
-      <FeatureList features={features} />
+      <div className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+          Ranking RICE
+        </h2>
+        <FeatureList features={features} />
+      </div>
     </div>
   );
 }
