@@ -1,6 +1,6 @@
 # Priorizador de Features — Contexto del proyecto
 
-_Última actualización: 2026-08-19_
+_Última actualización: 2026-08-26_
 
 ## Qué es este proyecto
 
@@ -37,10 +37,16 @@ Implementa solo lo que se te pida en cada prompt.
 - **Next.js** (App Router) con **TypeScript**
 - **Tailwind CSS** para estilos
 
-La base de datos (Supabase) y el deployment (Vercel) se agregan durante el curso;
-todavía no están configurados en este proyecto. Cuando se conecte Supabase, usa
-las API keys nuevas (`sb_publishable_...` en `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`),
-nunca las legacy (anon/service_role JWT).
+El deployment (Vercel) se agrega durante el curso; todavía no está configurado
+en este proyecto.
+
+**Supabase se conecta directo a la base de datos de PRODUCCIÓN.** Esto es
+intencional: este proyecto es un prototipo y no usamos migraciones. Todos los
+cambios de esquema y de datos se hacen directo en la BD de PROD (vía SQL
+editor de Supabase o el cliente), sin capa de staging ni sistema de
+migraciones. Al escribir código, usa las API keys nuevas
+(`sb_publishable_...` en `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`), nunca las
+legacy (anon/service_role JWT).
 
 ## Comandos
 
