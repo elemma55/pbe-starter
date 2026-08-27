@@ -7,7 +7,5 @@ export function calculateRiceScore({ reach, impact, confidence, effort }: RiceIn
 }
 
 export function sortByRiceScoreDesc<T extends RiceInputs>(features: T[]): T[] {
-  return [...features].sort(
-    (a, b) => calculateRiceScore(b) - calculateRiceScore(a),
-  );
+  return [...features].sort((a, b) => calculateRiceScore(b) - calculateRiceScore(a));
 }

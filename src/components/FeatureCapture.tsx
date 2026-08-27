@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import type { Feature } from "@/types/feature";
 import { FeatureForm, type FeatureFormValues } from "@/components/FeatureForm";
 import { FeatureList } from "@/components/FeatureList";
+import { RiceRankingModal } from "@/components/RiceRankingModal";
 import { fetchFeatures, insertFeature } from "@/lib/features-repository";
 
 export function FeatureCapture() {
   const [features, setFeatures] = useState<Feature[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isRankingOpen, setIsRankingOpen] = useState(false);
 
   useEffect(() => {
     fetchFeatures()
@@ -32,9 +34,18 @@ export function FeatureCapture() {
     <div className="grid w-full max-w-5xl gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
       <FeatureForm onSubmit={handleAddFeature} />
       <div className="flex flex-col gap-4">
-        <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
-          Ranking RICE
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+            Features
+          </h2>
+          <button
+            type="button"
+            onClick={() => setIsRankingOpen(true)}
+            className="rounded-md border border-zinc-300 px-3 py-1.5 text-sm font-medium text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          >
+            Ver ranking RICE
+          </button>
+        </div>
         {error && (
           <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-950 dark:text-red-400">
             {error}
@@ -48,6 +59,11 @@ export function FeatureCapture() {
           <FeatureList features={features} />
         )}
       </div>
+      <RiceRankingModal
+        features={features}
+        open={isRankingOpen}
+        onClose={() => setIsRankingOpen(false)}
+      />
     </div>
   );
 }
